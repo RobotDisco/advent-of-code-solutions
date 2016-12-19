@@ -1,6 +1,7 @@
 # My Advent of Code problems
 
 Advent of Code is this hella fun series of programming puzzles that gets put out every year (well for two years but you know what I mean)
+You can find it at http://www.adventofcode.com
 
 I didn't get around to it last year but this year I am. I am going to do my programs in common lisp because why not (until I give up and use something "easier.")
 
