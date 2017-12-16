@@ -28,7 +28,14 @@ def knothash(input)
     densehash << s.reduce { |a, v| a ^ v }
   end
 
-  densehash.map { |i| i.to_s 16 }.join
+  unpadded = densehash.map { |i| i.to_s 16 }
+  unpadded.map do |c|
+    if c.size < 2
+      '0' << c
+    else
+      c
+    end
+  end.join
 end
 
 def question14a key
@@ -42,7 +49,12 @@ end
 def question14b(key)
   grid = (0..127).map do |i|
     input = "#{key}-#{i}"
-    knothash(input).hex.to_s(2).split('').map do |j|
+    binrow = knothash(input).split('').map do |char|
+      binstring = char.hex.to_s(2)
+      binstring.prepend('0') until binstring.size == 4
+      binstring
+    end
+    binrow.join.split('').map do |j|
       if j == '1'
         true
       else
@@ -52,7 +64,6 @@ def question14b(key)
   end
 
   flatgrid = grid.flatten
-  puts flatgrid.size
   count = 0
   loop do
     firstunallocated = flatgrid.find_index true
@@ -85,4 +96,4 @@ def question14b(key)
 end
 
 puts question14a input
-puts question14b testinput
+puts question14b input
