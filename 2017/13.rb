@@ -37,7 +37,7 @@ def question13b(depths)
     sorteddepths.each do |d|
       puts delay
       if ((delay + d) % forbiddentimes[d]).zero?
-        delay += 2
+        delay += 1
         next 2
       end
     end
@@ -46,5 +46,5 @@ def question13b(depths)
 end
 
 puts question13a depths
-puts question13b depths
-#puts question13b(0 => 3, 1 => 2, 4 => 4, 6 => 4) # depths
+#puts question13b depths
+puts question13b(0 => 3, 1 => 2, 4 => 4, 6 => 4) # depths
