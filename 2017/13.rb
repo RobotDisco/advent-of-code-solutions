@@ -32,19 +32,17 @@ def question13b(depths)
   end
   sorteddepths = sorteddepths.map { |e| e[0] }
 
-  delay = 1
+  delay = 0
   loop do
-    sorteddepths.each do |d|
-      puts delay
-      if ((delay + d) % forbiddentimes[d]).zero?
-        delay += 1
-        next 2
-      end
+    caught = sorteddepths.any? do |d|
+      ((delay + d) % forbiddentimes[d]).zero?
     end
+    break unless caught
+    delay += 1
   end
   delay
 end
 
 puts question13a depths
-#puts question13b depths
-puts question13b(0 => 3, 1 => 2, 4 => 4, 6 => 4) # depths
+puts question13b depths
+#puts question13b(0 => 3, 1 => 2, 4 => 4, 6 => 4) # depths
