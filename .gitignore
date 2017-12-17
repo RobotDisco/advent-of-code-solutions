@@ -6,3 +6,6 @@
 *.lisp-temp
 
 # End of https://www.gitignore.io/api/commonlisp
+
+### No need to keep input files around
+*.txt
