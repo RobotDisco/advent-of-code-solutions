@@ -32,7 +32,7 @@ Class {
 	#category : #AdventOfCode
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 AOCInput class >> year: year day: day session: session [
 	"Fetch and cache the input for a given Advent of Code question
 	
