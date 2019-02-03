@@ -1,25 +1,34 @@
 "
 I represent the input of a Advent of Code Question.
 
-I fetch input from the Advent of Code website.
-I know the user's credential and the question I am the input for.
+Responsibilities:
+I fetch and cache input from the Advent of Code website.
 I also know the question input Advent Of Code generates for me.
 
-UNCOMPLETED TEMPLATE FOLLOWS
-For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+Collaborators:
+I get the session token I need, if necessary, from an AOCSession instance supplied on creation.
 
 Public API and Key Messages
 
-- message one   
-- message two 
-- (for bonus points) how to create instances.
+- content - Return the input as a ByteString
+- asIntegerArray - Return the input as a parsed array of integers   
+- class >> year:day:session - Given session object, create instance for specified AOC year/day question.
 
-   One simple example is simply gorgeous.
+How to create instances.
+	input := AOCInput year: 2018 day: 1 session: session.
+How to create instances for testing.
+	input := AOCInput withInput: 'some test input'.
  
 Internal Representation and Key Implementation Points.
 
+ 	 Instance Variables:
+	year: <Integer>
+	day: <Integer>
+	session: <String>
+	content: <ByteString>
 
-    Implementation Points
+	 Implemention Points:
+	Content is lazily fetched from the adventofcode, and is then cached for the lifetime of the instance.
 "
 Class {
 	#name : #AOCInput,
@@ -56,11 +65,18 @@ AOCInput class >> year: year day: day session: session [
 		yourself
 ]
 
+{ #category : #converting }
+AOCInput >> asIntegerArray [ 
+^ self content substrings collect: [ :x | x asInteger ].
+]
+
 { #category : #accessing }
 AOCInput >> content [
-	"Fetch and return AOC question input data for specified user"
+	"Fetch and return AOC question input data for specified user
+	
+This is lazily initialized, we only fetch the content on first invocation."
 
-	^ content ifNil: [ self fetchContent ].
+	^ content ifNil: [ self fetchContent. content]
 ]
 
 { #category : #accessing }
@@ -73,8 +89,10 @@ AOCInput >> day: anInteger [
 	day := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #fetching }
 AOCInput >> fetchContent [
+	"Fetch and store user's evaluation input from the adventofcode web site"
+
 	| cookie client |
 	cookie := ZnCookie new
 		name: 'session';
@@ -83,8 +101,11 @@ AOCInput >> fetchContent [
 	client := ZnClient new.
 	client session cookieJar add: cookie.
 	content := client
-		get: ('https://adventofcode.com/{1}/day/{2}/input' format: {year. day}).
-	^ content
+		get:
+			('https://adventofcode.com/{1}/day/{2}/input'
+				format:
+					{year.
+					day}).
 ]
 
 { #category : #accessing }
