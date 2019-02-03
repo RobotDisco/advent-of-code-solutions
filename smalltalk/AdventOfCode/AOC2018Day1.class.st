@@ -5,23 +5,26 @@ Class {
 	#name : #AOC2018Day1,
 	#superclass : #Object,
 	#instVars : [
-		'session'
+		'session',
+		'input'
 	],
 	#category : #AdventOfCode
 }
 
-{ #category : #accessing }
-AOC2018Day1 class >> withSession: session [
-	^ self new session: session
+{ #category : #'as yet unclassified' }
+AOC2018Day1 class >> withInput: input [
+	"Create instance of day's exercise, evaluating over supplied input
+	
+	input - data we will use when evaluating an answers for this day"
+
+	^ self new input: input
 ]
 
 { #category : #accessing }
 AOC2018Day1 >> firstStar [
 	"compute content of first star"
 
-	| input result |
-	"Fetch input from adventofcode.com"
-	input := AOCInput year: 2018 day: 1 session: (session session).
+	| result |
 	"Convert input into series of integers"
 	result := input content substrings collect: [ :x | x asInteger ].
 	"Reduce via summing"
@@ -30,6 +33,14 @@ AOC2018Day1 >> firstStar [
 ]
 
 { #category : #accessing }
-AOC2018Day1 >> session: newSession [
-	session := newSession
+AOC2018Day1 >> input: myInput [
+
+input := myInput
+
+	
+]
+
+{ #category : #accessing }
+AOC2018Day1 >> secondStar [
+	self shouldBeImplemented.
 ]

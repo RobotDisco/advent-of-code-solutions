@@ -27,10 +27,19 @@ Class {
 	#instVars : [
 		'year',
 		'day',
-		'session'
+		'session',
+		'content'
 	],
 	#category : #AdventOfCode
 }
+
+{ #category : #initialization }
+AOCInput class >> withContent: content [
+"Create Input instance with pre-supplied content.
+
+Useful for testing or trying sample input"
+^self new content: content
+]
 
 { #category : #initialization }
 AOCInput class >> year: year day: day session: session [
@@ -43,14 +52,29 @@ AOCInput class >> year: year day: day session: session [
 	^ self new
 		year: year;
 		day: day;
-		session: session;
-		yourself.
+		session: session session;
+		yourself
 ]
 
 { #category : #accessing }
 AOCInput >> content [
 	"Fetch and return AOC question input data for specified user"
 
+	^ content ifNil: [ self fetchContent ].
+]
+
+{ #category : #accessing }
+AOCInput >> content: newContent [
+	content := newContent
+]
+
+{ #category : #accessing }
+AOCInput >> day: anInteger [ 
+	day := anInteger
+]
+
+{ #category : #'as yet unclassified' }
+AOCInput >> fetchContent [
 	| cookie client |
 	cookie := ZnCookie new
 		name: 'session';
@@ -58,12 +82,9 @@ AOCInput >> content [
 		domain: 'adventofcode.com'.
 	client := ZnClient new.
 	client session cookieJar add: cookie.
-	^ client get: ('https://adventofcode.com/{1}/day/{2}/input' format: { year. day. })
-]
-
-{ #category : #accessing }
-AOCInput >> day: anInteger [ 
-	day := anInteger
+	content := client
+		get: ('https://adventofcode.com/{1}/day/{2}/input' format: {year. day}).
+	^ content
 ]
 
 { #category : #accessing }
