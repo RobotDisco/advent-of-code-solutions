@@ -66,6 +66,11 @@ AOCInput class >> year: year day: day session: session [
 ]
 
 { #category : #converting }
+AOCInput >> asArray [
+^ self content substrings
+]
+
+{ #category : #converting }
 AOCInput >> asIntegerArray [ 
 ^ self content substrings collect: [ :x | x asInteger ].
 ]
