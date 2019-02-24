@@ -37,13 +37,14 @@ AOC2018Day2B >> convertToAnnotatedSetList [
 { #category : #private }
 AOC2018Day2B >> findLargestIntersection [
 	| set1 set2 currDiff |
-	1 to: setList size - 1 do: [ :index | 
-		index + 1 to: setList size do: [ :index2 | 
-			set1 := setList at: index.
-			set2 := setList at: index2.
+	setList
+		combinations: 2
+		atATimeDo: [ :pair |
+			set1 := pair first.
+			set2 := pair last.
 			currDiff := set1 difference: set2.
 			currDiff size = 1
-				ifTrue: [ largestIntersection := set1 intersection: set2 ] ] ]
+				ifTrue: [ largestIntersection := set1 intersection: set2 ] ]
 ]
 
 { #category : #accessing }
