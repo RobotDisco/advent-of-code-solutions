@@ -67,7 +67,7 @@ AOCInput class >> year: year day: day session: session [
 
 { #category : #converting }
 AOCInput >> asArray [
-^ self content substrings
+	^ self content substrings: { (Character lf) }
 ]
 
 { #category : #converting }
