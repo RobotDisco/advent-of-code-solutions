@@ -1,7 +1,7 @@
 name:                AOC2019
-version:             0.1.0.0
+version:             0.0.0.1
 github:              "RobotDisco/AOC2019"
-license:             UNLICENSE
+license:             OtherLicense
 author:              "Gaelan D'costa"
 maintainer:          "gdcosta@gmail.com"
 copyright:           "2019 Gaelan D'costa"
