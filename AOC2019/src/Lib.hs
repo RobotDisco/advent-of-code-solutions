@@ -1,6 +1,10 @@
 module Lib
-    ( someFunc
+    ( q1s1,
+      someFunc
     ) where
 
-someFunc :: IO ()
+q1s1 :: Int -> Int
+q1s1 mass = mass `div` 3 - 2
+
+someFunc :: IO()
 someFunc = putStrLn "someFunc"
