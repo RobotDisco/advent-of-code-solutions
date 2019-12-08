@@ -24,6 +24,7 @@ dependencies:
 - advent-of-code-api == 0.1.2.3
 - text == 1.2.3.1
 - load-env >= 0.2.1.0 && < 0.3
+- containers == 0.6.0.1
 
 library:
   source-dirs: src

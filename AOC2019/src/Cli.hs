@@ -9,12 +9,10 @@ import System.Environment (lookupEnv)
 usageText :: String
 usageText = "Usage: aoc <year> <day> <part>"
 
-printUsage :: IO ()
-printUsage = putStrLn usageText
-
-questionWrapper :: (T.Text -> Int) -> (Either AoCError T.Text) -> String
+questionWrapper :: Maybe AoCQuestion -> (Either AoCError T.Text) -> String
 questionWrapper _ (Left err) = "Error: " ++ (show err)
-questionWrapper f (Right input) = "Answer: " ++ (show $ f input)
+questionWrapper Nothing _ = "Error: " ++ "Question not implemented."
+questionWrapper (Just f) (Right input) = "Answer: " ++ (show $ f input)
 
 createAoCOpts :: Integer -> (IO AoCOpts)
 createAoCOpts year =
@@ -23,11 +21,11 @@ createAoCOpts year =
     session <- lookupEnv "AOCSESSION"
     return $ defaultAoCOpts year (maybe "" id session)
 
-runQuestion :: Int -> Integer -> Int -> IO ()
-runQuestion _year day _ =
+runQuestion :: Integer -> Integer -> Integer -> IO ()
+runQuestion year day star =
   let req = AoCInput (mkDay_ day)
+      function = getQuestion year day star
   in do
     opts <- createAoCOpts 2019
-    input <- runAoC opts req;
-    res <- return $ questionWrapper d1s1 input;
-    putStrLn res;
+    input <- runAoC opts req
+    putStrLn $ questionWrapper function input
