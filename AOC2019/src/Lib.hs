@@ -1,4 +1,5 @@
 module Lib (
+  fuelForMass,
   AoCQuestion,
   getQuestion
   ) where
