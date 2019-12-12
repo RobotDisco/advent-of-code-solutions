@@ -1,8 +1,10 @@
 module Day2 (
+  star1,
   exec
   ) where
 
 import qualified Data.Vector as V
+import qualified Data.Text as T
 
 execAdd :: (Int, V.Vector Int) -> (Int, V.Vector Int)
 execAdd (pc, instrs) =
@@ -31,3 +33,11 @@ exec' (pc, instrs) = case (instrs V.! pc) of
 
 exec :: [Int] -> [Int]
 exec instrs = V.toList $ exec' (0, V.fromList instrs)
+
+prep1202 :: [Int] -> [Int]
+prep1202 (i0:_:_:instrs) = (i0:12:02:instrs)
+prep1202 _ = error "This should never happen!"
+
+star1 :: T.Text -> T.Text
+star1 input = T.pack $ show $ exec $ prep1202 $ read $ T.unpack input
+

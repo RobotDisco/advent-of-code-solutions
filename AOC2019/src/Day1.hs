@@ -1,9 +1,11 @@
 module Day1 (
   fuelForMass,
   fuelForFuelForMass,
-  d1s1,
-  d1s2
+  star1,
+  star2
   ) where
+
+import qualified Data.Text as T
 
 fuelForMass :: Integer -> Integer
 fuelForMass mass = maximum [mass `div` 3 - 2, 0]
@@ -23,8 +25,9 @@ fuelForFuelForMass mass =
         -- the operator is considered infix?
         nonzeros = takeWhile (> 0) keepAddingFuel
 
-d1s1 :: [Integer] -> Integer
-d1s1 fuels = sum $ map fuelForMass fuels
+star1 :: T.Text -> T.Text
+star1 input = T.pack $ show $ sum $ map fuelForMass $ map (read . T.unpack) $ T.lines input
 
-d1s2 :: [Integer] -> Integer
-d1s2 fuels = sum $ map fuelForFuelForMass fuels
+star2 :: T.Text -> T.Text
+star2 input = T.pack $ show $ sum $ map fuelForFuelForMass $ map (read . T.unpack) $ T.lines input
+
