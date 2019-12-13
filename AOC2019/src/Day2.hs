@@ -1,10 +1,12 @@
 module Day2 (
   star1,
+  star2,
   exec
   ) where
 
-import qualified Data.Vector as V
+import qualified Data.List as L
 import qualified Data.Text as T
+import qualified Data.Vector as V
 
 execAdd :: (Int, V.Vector Int) -> (Int, V.Vector Int)
 execAdd (pc, instrs) =
@@ -41,3 +43,13 @@ prep _ _ _ = error "This should never happen!"
 star1 :: T.Text -> T.Text
 star1 input = T.pack $ show $ exec $ prep 12 02 $ map (read . T.unpack) $ T.splitOn (T.pack ",") input
 
+star2 :: T.Text -> T.Text
+star2 input =
+  let instrs' = map (read . T.unpack) $ T.splitOn (T.pack ",") input
+      alloutputs = do
+        noun <- [0..99]
+        verb <- [0..99]
+        return $ exec $ prep noun verb instrs'
+      Just (_:desiredNoun:desiredVerb:_) = L.find (\x -> (head x) == 19690720) alloutputs
+      answer = (desiredNoun * 100) + desiredVerb
+  in T.pack $ show answer
