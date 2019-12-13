@@ -17,7 +17,7 @@ type AoCCollection = M.Map Integer AoCYear
 -- day1 = M.fromList [(1, mkSolution Day1.d1s1), (2, mkSolution Day1.d1s2)]
 
 day1 :: AoCDay
-day1 = M.fromList [(1, Day1.star1), (1, Day1.star2)]
+day1 = M.fromList [(1, Day1.star1), (2, Day1.star2)]
 day2 :: AoCDay
 day2 = M.fromList [(1, Day2.star1), (2, Day2.star1)]
 year2019 :: AoCYear
