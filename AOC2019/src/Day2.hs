@@ -34,10 +34,10 @@ exec' (pc, instrs) = case (instrs V.! pc) of
 exec :: [Int] -> [Int]
 exec instrs = V.toList $ exec' (0, V.fromList instrs)
 
-prep1202 :: [Int] -> [Int]
-prep1202 (i0:_:_:instrs) = (i0:12:02:instrs)
-prep1202 _ = error "This should never happen!"
+prep :: Int -> Int -> [Int] -> [Int]
+prep i1 i2 (i0:_:_:instrs) = (i0:i1:i2:instrs)
+prep _ _ _ = error "This should never happen!"
 
 star1 :: T.Text -> T.Text
-star1 input = T.pack $ show $ exec $ prep1202 $ read $ T.unpack input
+star1 input = T.pack $ show $ exec $ prep 12 02 $ map (read . T.unpack) $ T.splitOn (T.pack ",") input
 
