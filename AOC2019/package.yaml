@@ -52,4 +52,5 @@ tests:
     dependencies:
     - AOC2019
     - tasty >= 1.2 && < 1.3
+    - tasty-discover == 4.2.1
     - tasty-hunit >= 0.10 && < 0.11
