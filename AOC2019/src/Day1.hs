@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Day1 (
   fuelForMass,
   fuelForFuelForMass,

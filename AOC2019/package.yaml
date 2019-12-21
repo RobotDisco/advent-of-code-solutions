@@ -21,11 +21,12 @@ description:         Please see the README on GitHub at <https://github.com/Robo
 
 dependencies:
 - base >= 4.7 && < 5
-- advent-of-code-api == 0.1.2.3
-- text == 1.2.3.1
-- load-env >= 0.2.1.0 && < 0.3
-- containers == 0.6.0.1
-- vector == 0.12.0.3
+- advent-of-code-api
+- containers
+- load-env
+- split
+- vector
+- text
 
 library:
   source-dirs: src
@@ -51,6 +52,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - AOC2019
-    - tasty >= 1.2 && < 1.3
-    - tasty-discover == 4.2.1
-    - tasty-hunit >= 0.10 && < 0.11
+    - smallcheck
+    - tasty
+    - tasty-discover
+    - tasty-hunit
