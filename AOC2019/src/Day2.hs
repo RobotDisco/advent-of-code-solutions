@@ -5,8 +5,6 @@ module Day2 (
   ) where
 
 import qualified Data.List as L
-{-# LANGUAGE OverloadedStrings #-}
-
 import qualified Data.Text as T
 import qualified Data.Vector as V
 
