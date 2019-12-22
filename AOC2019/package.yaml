@@ -24,9 +24,10 @@ dependencies:
 - advent-of-code-api
 - containers
 - load-env
+- regex-tdfa
 - split
-- vector
 - text
+- vector
 
 library:
   source-dirs: src
