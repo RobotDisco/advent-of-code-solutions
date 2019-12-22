@@ -24,7 +24,7 @@ year2019 = M.fromList
     (1, M.fromList [(1, Day1.star1), (2, Day1.star2)]),
     (2, M.fromList [(1, Day2.star1), (2, Day2.star2)]),
     (3, M.fromList [(1, Day3.star1), (2, Day3.star2)]),
-    (4, M.fromList [(1, Day4.star1), (2, Day4.star1)])
+    (4, M.fromList [(1, Day4.star1), (2, Day4.star2)])
   ]
 
 collection :: AoCCollection
