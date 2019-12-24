@@ -1,6 +1,6 @@
-name:                AOC2019
+name:                AOC
 version:             0.0.0.1
-github:              "RobotDisco/AOC2019"
+github:              "RobotDisco/AOC"
 license:             OtherLicense
 author:              "Gaelan D'costa"
 maintainer:          "gdcosta@gmail.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/RobotDisco/AOC2019#readme>
+description:         Please see the README on GitHub at <https://github.com/RobotDisco/AOC#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -33,7 +33,7 @@ library:
   source-dirs: src
 
 executables:
-  AOC2019-exe:
+  AOC-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -41,10 +41,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - AOC2019
+    - AOC
 
 tests:
-  AOC2019-test:
+  AOC-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -52,7 +52,7 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - AOC2019
+    - AOC
     - smallcheck
     - tasty
     - tasty-discover
