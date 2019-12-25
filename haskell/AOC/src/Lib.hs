@@ -9,6 +9,7 @@ import qualified Day1
 import qualified Day2
 import qualified Day3
 import qualified Day4
+import qualified Day6
 
 type AoCQuestion = T.Text -> T.Text
 type AoCDay = M.Map Integer AoCQuestion
@@ -24,7 +25,8 @@ year2019 = M.fromList
     (1, M.fromList [(1, Day1.star1), (2, Day1.star2)]),
     (2, M.fromList [(1, Day2.star1), (2, Day2.star2)]),
     (3, M.fromList [(1, Day3.star1), (2, Day3.star2)]),
-    (4, M.fromList [(1, Day4.star1), (2, Day4.star2)])
+    (4, M.fromList [(1, Day4.star1), (2, Day4.star2)]),
+    (6, M.fromList [(1, Day6.star1), (2, Day6.star1)])
   ]
 
 collection :: AoCCollection
