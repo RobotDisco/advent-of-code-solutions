@@ -16,25 +16,25 @@ string2tuple str =
 string2map :: [String] -> M.Map String String
 string2map = M.fromList . (map string2tuple)
 
-numOrbits'' :: M.Map String String -> [String] -> Maybe String -> [String]
-numOrbits'' m acc (Just s) = numOrbits'' m (s:acc) (M.lookup s m)
+orbitPath' :: M.Map String String -> [String] -> Maybe String -> [String]
+orbitPath' m acc (Just s) = orbitPath' m (s:acc) (M.lookup s m)
 -- We decrement acc because this one doesn't count, it isn't a valid orbit.
-numOrbits'' _ acc Nothing = tail acc
+orbitPath' _ acc Nothing = tail acc
 
-orbitL :: M.Map String String -> String -> [String]
-orbitL m s = numOrbits'' m [] (Just s)
+orbitPath :: M.Map String String -> String -> [String]
+orbitPath m s = orbitPath' m [] (Just s)
 
 star1 :: T.Text -> T.Text
 star1 input =
   let orbits = string2map $ map T.unpack $ T.lines input
-      totalOrbits = M.foldrWithKey (\k _ a -> (length $ orbitL orbits k) + a) 0 orbits
+      totalOrbits = M.foldrWithKey (\k _ a -> (length $ orbitPath orbits k) + a) 0 orbits
   in T.pack $ show totalOrbits
 
 star2 :: T.Text -> T.Text
 star2 input =
   let orbits = string2map $ map T.unpack $ T.lines input
-      you_orbits = init $ orbitL orbits "YOU"
-      santa_orbits = init $ orbitL orbits "SAN"
+      you_orbits = init $ orbitPath orbits "YOU"
+      santa_orbits = init $ orbitPath orbits "SAN"
       common_orbits = takeWhile (\(x,y) -> x == y) $ zip you_orbits santa_orbits
       num_jumps = (length you_orbits) + (length santa_orbits) - (2 * (length common_orbits))
   in T.pack $ show num_jumps
